@@ -1,0 +1,14 @@
+{
+    "id": "ante_aether",
+    "name": "ante_aether",
+    "author": "basil_squared",
+    "description": "A High Fantasy take on Balatro",
+    "prefix": "ante_aether",
+    "badge_color": "7851a9",
+    "dependencies": [
+        "Steamodded (>=1.0.0~BETA-1211a",
+        "Talisman"
+    ],
+    "main_file": "init.lua",
+    "version": "0.0.1"
+}

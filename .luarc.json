@@ -1,0 +1,17 @@
+{
+    "Lua.runtime.version": "LuaJIT",
+    "Lua.workspace.library": [
+        "C:\\Users\\Tabby\\AppData\\Roaming\\Balatro\\Mods",
+        "C:\\Users\\Tabby\\AppData\\Roaming\\Balatro\\Mods\\smods",
+        "C:\\Users\\Tabby\\AppData\\Roaming\\Balatro\\Mods\\lovely\\dump"
+    ],
+    "diagnostics.globals": [
+        "G",
+        "love",
+        "SMODS",
+        "sendDebugMessage",
+        "JokerDisplay",
+        "Partner_API",
+        "ease_hands"
+    ]
+}
