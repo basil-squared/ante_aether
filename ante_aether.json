@@ -1,7 +1,9 @@
 {
     "id": "ante_aether",
-    "name": "ante_aether",
-    "author": "basil_squared",
+    "name": "Ante Aether",
+    "author": [
+        "basil_squared"
+    ],
     "description": "A High Fantasy take on Balatro",
     "prefix": "ante_aether",
     "badge_color": "7851a9",
