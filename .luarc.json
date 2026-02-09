@@ -3,7 +3,10 @@
     "Lua.workspace.library": [
         "C:\\Users\\Tabby\\AppData\\Roaming\\Balatro\\Mods",
         "C:\\Users\\Tabby\\AppData\\Roaming\\Balatro\\Mods\\smods",
-        "C:\\Users\\Tabby\\AppData\\Roaming\\Balatro\\Mods\\lovely\\dump"
+        "C:\\Users\\Tabby\\AppData\\Roaming\\Balatro\\Mods\\lovely\\dump",
+        "~/Library/Application Support/Balatro/Mods",
+        "~/Library/Application Support/Balatro/Mods/smods",
+        "~/Library/Application Support/Balatro/Mods/lovely/dump"
     ],
     "diagnostics.globals": [
         "G",

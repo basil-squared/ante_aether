@@ -21,6 +21,7 @@ function AA.FUNC.RequireFolderRecursive(path)
 
         for _, fileInfo in ipairs(files) do
             local fileType = fileInfo.type
+            ---@diagnostic disable-next-line: undefined-field
             local fileName = fileInfo.name
             local childPath = currentPath == "" and fileName or currentPath .. "/" .. fileName
 

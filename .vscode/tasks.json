@@ -5,10 +5,23 @@
             "label": "Run Balatro",
             "type": "process",
             "command": "C:\\Program Files (x86)\\Steam\\steamapps\\common\\Balatro\\Balatro.exe",
+            "osx": {
+                "command": "${env:HOME}/Library/Application Support/Steam/steamapps/common/Balatro/run_lovely_macos.sh"
+            },
             "group": {
-                "kind": "test",
+                "kind": "test", 
                 "isDefault": true
             },
+            "presentation": {
+                "reveal": "always",
+                "panel": "new"
+            },
+            "problemMatcher": []
+        },
+        {
+            "label": "Install Mod (Symlink)",
+            "type": "shell",
+            "command": "mkdir -p \"${env:HOME}/Library/Application Support/Balatro/Mods\" && rm -rf \"${env:HOME}/Library/Application Support/Balatro/Mods/ante_aether\" && ln -s \"${workspaceFolder}\" \"${env:HOME}/Library/Application Support/Balatro/Mods/ante_aether\"",
             "presentation": {
                 "reveal": "always",
                 "panel": "new"
