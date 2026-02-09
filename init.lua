@@ -1,3 +1,4 @@
+---@diagnostic disable: duplicate-set-field
 SMODS.current_mod.optional_features = {
     cardareas = {
         unscored = true,
