@@ -8,7 +8,7 @@ return {
             j_ante_aether_mana_battery = {
                 name = "Mana Battery",
                 text = {
-                    "{C:attention}Surge{}: Gains {X:mult,C:white}#1#{} Mult",
+                    "{C:attention}Surge{}: Gains {X:mult,C:white}X#1#{} Mult",
                     "{C:inactive,S:0.7}(resets at end of round){}"
                 },
                 flavor_text = {
