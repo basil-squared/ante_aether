@@ -28,6 +28,28 @@ return {
                 flavor_text = {
                     '{C:inactive,S:0.8}"Look ma, no wires!"'
                 }
+            },
+            j_ante_aether_alternator = {
+                name = "Alternator",
+                text = {
+                    "{C:attention}Retriggers{} the",
+                    "{C:attention}second{} and {C:attention}fourth{} cards",
+                    "in scored hand"
+                },
+                flavor_text = {
+                    '{C:inactive,S:0.8}"Up.. down.. up... down...'
+                }
+
+            },
+            j_ante_aether_superconductor = {
+                name = "Superconductor",
+                text = {
+                    "{C:attention}Surge:{} {X:mult,C:white}X#1#{} Mult"
+                },
+                flavor_text = {
+                    '{C:inactive,S:0.8}"Zero resistance, yet somehow infinite potential.',
+                    '{C:inactive,S:0.8}How curious. - Perkeo, Avatar of Resonance'
+                }
             }
         },
         Other = {
