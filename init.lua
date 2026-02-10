@@ -7,11 +7,42 @@ SMODS.current_mod.optional_features = {
     }
 }
 
+SMODS.current_mod.config = {
+    flavor_text = true
+}
+
+
+SMODS.current_mod.config_tab = function()
+    return {
+        n = G.UIT.ROOT,
+        config = {
+            {
+                n = G.UIT.C,
+                config = { align = "cm", padding = 0.05, r = 0.1, colour = G.C.BLACK, emboss = 0.05 },
+                nodes = {
+                    {
+                        n = G.UIT.R,
+                        config = { align = "cm", padding = 0.05 },
+                        nodes = {
+                            create_toggle({
+                                label = "Flavor Text",
+                                ref_table = SMODS.current_mod.config,
+                                ref_value = "flavor_text"
+                            })
+                        }
+                    }
+                }
+            }
+        }
+    }
+end
+
 local NFS = require("nativefs")
 AA = {}
 AA.G = {}
 AA.G.MODPATH = SMODS.current_mod.path
 AA.FUNC = {}
+AA.G.CONFIG = SMODS.current_mod.config
 
 -- Original code from Charcuterie, also my mod :)
 function AA.FUNC.RequireFolderRecursive(path)
@@ -35,3 +66,6 @@ function AA.FUNC.RequireFolderRecursive(path)
     end
     scan(path)
 end
+
+AA.FUNC.RequireFolderRecursive("modules/priority")
+AA.FUNC.RequireFolderRecursive("modules/content")

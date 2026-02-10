@@ -1,0 +1,47 @@
+return {
+    descriptions = {
+        Back = {},
+        Blind = {},
+        Edition = {},
+        Enhanced = {},
+        Joker = {
+            j_ante_aether_mana_battery = {
+                name = "Mana Battery",
+                text = {
+                    "{C:attention}Surge{}: Gains {X:mult,C:white}#1#{} Mult",
+                    "{C:inactive,S:0.7}(resets at end of round){}"
+                },
+                flavor_text = {
+                    '{C:inactive,S:0.8}"A single whisper, trapped in glass,{}',
+                    '{C:inactive,S:0.8}repeating until it shatters the world."{}'
+                }
+            }
+        },
+        Other = {},
+        Planet = {},
+        Spectral = {},
+        Stake = {},
+        Tag = {},
+        Tarot = {},
+        Voucher = {},
+    },
+    misc = {
+        achievement_descriptions = {},
+        achievement_names = {},
+        blind_states = {},
+        challenge_names = {},
+        collabs = {},
+        dictionary = {},
+        high_scores = {},
+        labels = {},
+        poker_hand_descriptions = {},
+        poker_hands = {},
+        quips = {},
+        ranks = {},
+        suits_plural = {},
+        suits_singular = {},
+        tutorial = {},
+        v_dictionary = {},
+        v_text = {},
+    },
+}
