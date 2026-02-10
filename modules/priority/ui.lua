@@ -1,90 +1,197 @@
--- Hook card_h_popup to inject flavor text between description and rarity badge
+local function hex(str)
+    str = str:gsub("#", "")
+    return {
+        tonumber(str:sub(1, 2), 16) / 255,
+        tonumber(str:sub(3, 4), 16) / 255,
+        tonumber(str:sub(5, 6), 16) / 255,
+        1,
+    }
+end
+
+-- colors
+local FACTION_COLORS = {
+    resonance = {
+        bg   = hex("#73BF40"),
+        text = hex("#ffffff"),
+    },
+    dominion = {
+        bg   = hex("#592699"),
+        text = hex("#FFFFFF"),
+    },
+    entropy = {
+        bg   = hex("#141414"),
+        text = hex("#D92626"),
+    },
+    nullity = {
+
+        bg         = hex("#1F1F2E"),
+        text_cycle = {
+            hex("#9933E6"),
+            hex("#33B3E6"),
+            hex("#E64D80"),
+            hex("#4DE699"),
+            hex("#E6CC33"),
+        },
+    },
+}
+
+local FACTION_LABELS = {
+    resonance = "Resonance",
+    dominion = "Dominion",
+    entropy = "Entropy",
+    nullity = "Nullity",
+}
+
+-- hooking into the card_h_popup so that I can inject the popup and faction text
 local card_h_popup_ref = G.UIDEF.card_h_popup
 
 G.UIDEF.card_h_popup = function(card)
     local ret = card_h_popup_ref(card)
 
-    -- Guard: only proceed if config enabled, card exists, and tooltip was built
-    if not AA.G.CONFIG.flavor_text then return ret end
     if not card or not card.config or not card.config.center then return ret end
     if not ret then return ret end
 
     local center = card.config.center
-    if not center.set or not center.key then return ret end
 
-    -- Look up the localization entry for flavor text
-    local descs = G.localization.descriptions
-    if not descs or not descs[center.set] then return ret end
+    -- grabs the container
+    local ok, inner_nodes = pcall(function()
+        return ret.nodes[1].nodes[1].nodes[1].nodes
+    end)
+    if not ok or not inner_nodes then return ret end
 
-    local loc_target = descs[center.set][center.key]
-    if not loc_target or not loc_target.flavor_text then return ret end
+    -- flavor text
+    if AA.G.CONFIG.flavor_text and center.set and center.key then
+        local descs = G.localization.descriptions
+        if descs and descs[center.set] then
+            local loc_target = descs[center.set][center.key]
+            if loc_target and loc_target.flavor_text then
+                local flavor_lines = loc_target.flavor_text
+                if type(flavor_lines) == "string" then
+                    flavor_lines = { flavor_lines }
+                end
 
-    local flavor_lines = loc_target.flavor_text
+                local loc_args = {
+                    shadow = false,
+                    scale = 1,
+                    text_colour = G.C.UI.TEXT_DARK,
+                    default_col = G.C.UI.TEXT_DARK,
+                    vars = { colours = {} },
+                }
 
-    -- Support both string and array formats
-    if type(flavor_lines) == "string" then
-        flavor_lines = { flavor_lines }
+                local text_rows = {}
+                for _, line in ipairs(flavor_lines) do
+                    local parsed = loc_parse_string(line)
+                    local row_nodes = SMODS.localize_box(parsed, loc_args)
+                    text_rows[#text_rows + 1] = {
+                        n = G.UIT.R,
+                        config = { align = "cm", maxw = 4 },
+                        nodes = row_nodes,
+                    }
+                end
+
+                local flavor_box = {
+                    n = G.UIT.R,
+                    config = {
+                        align = "cm",
+                        colour = G.C.UI.BACKGROUND_WHITE,
+                        r = 0.1,
+                        padding = 0.04,
+                        minw = 2,
+                        minh = 0.4,
+                        emboss = 0.05,
+                    },
+                    nodes = {
+                        {
+                            n = G.UIT.R,
+                            config = { align = "cm", padding = 0.03 },
+                            nodes = text_rows,
+                        },
+                    },
+                }
+
+                -- after desc box
+                for i, node in ipairs(inner_nodes) do
+                    if type(node) == "table" and node.config and node.config.filler then
+                        table.insert(inner_nodes, i + 1, flavor_box)
+                        break
+                    end
+                end
+            end
+        end
     end
 
-    local loc_args = {
-        shadow = false,
-        scale = 1,
-        text_colour = G.C.UI.TEXT_DARK,
-        default_col = G.C.UI.TEXT_DARK,
-        vars = { colours = {} },
-    }
+    -- faction badge post rarity badge
+    local faction = center.faction
+    if not faction or not FACTION_COLORS[faction] then return ret end
 
-    -- Parse each line through loc_parse_string and SMODS.localize_box
-    -- to support format codes like {C:inactive}, {S:0.8}, etc.
-    local text_rows = {}
-    for _, line in ipairs(flavor_lines) do
-        local parsed = loc_parse_string(line)
-        local row_nodes = SMODS.localize_box(parsed, loc_args)
-        text_rows[#text_rows + 1] = { n = G.UIT.R, config = { align = "cm", maxw = 4 }, nodes = row_nodes }
+    local fc = FACTION_COLORS[faction]
+    local label = FACTION_LABELS[faction] or faction
+
+    local text_node
+    if fc.text_cycle then
+        -- checks if theres a fluctuating color and does dynatext if so
+        text_node = {
+            n = G.UIT.O,
+            config = {
+                object = DynaText({
+                    string = { label },
+                    colours = fc.text_cycle,
+                    float = true,
+                    shadow = true,
+                    offset_y = -0.05,
+                    silent = true,
+                    spacing = 1,
+                    scale = 0.33,
+                    pop_in = 0,
+                    cycle_time = 0.8,
+                }),
+            },
+        }
+    else
+        --  regular text is dynamic too for consistency
+        text_node = {
+            n = G.UIT.O,
+            config = {
+                object = DynaText({
+                    string = { label },
+                    colours = { fc.text },
+                    float = true,
+                    shadow = true,
+                    offset_y = -0.05,
+                    silent = true,
+                    spacing = 1,
+                    scale = 0.33,
+                }),
+            },
+        }
     end
 
-    -- Build the flavor text box matching desc_from_rows style but with white bg
-    local flavor_box = {
+    local faction_badge = {
         n = G.UIT.R,
-        config = {
-            align = "cm",
-            colour = G.C.UI.BACKGROUND_WHITE,
-            r = 0.1,
-            padding = 0.04,
-            minw = 2,
-            minh = 0.4,
-            emboss = 0.05,
-        },
+        config = { align = "cm", padding = 0.03 },
         nodes = {
             {
                 n = G.UIT.R,
-                config = { align = "cm", padding = 0.03 },
-                nodes = text_rows,
+                config = {
+                    align = "cm",
+                    colour = fc.bg,
+                    r = 0.1,
+                    minw = 2,
+                    minh = 0.4,
+                    emboss = 0.05,
+                    padding = 0.03,
+                },
+                nodes = {
+                    { n = G.UIT.B, config = { h = 0.1, w = 0.03 } },
+                    text_node,
+                    { n = G.UIT.B, config = { h = 0.1, w = 0.03 } },
+                },
             },
         },
     }
 
-    -- Navigate the node tree to find the inner container:
-    -- ret.nodes[1].nodes[1].nodes[1].nodes holds: name, desc box, badges
-    local ok, inner_nodes = pcall(function()
-        return ret.nodes[1].nodes[1].nodes[1].nodes
-    end)
-
-    if not ok or not inner_nodes then return ret end
-
-    -- Find the description box (identified by filler = true from desc_from_rows)
-    -- and insert our flavor text box right after it
-    local insert_idx = nil
-    for i, node in ipairs(inner_nodes) do
-        if type(node) == "table" and node.config and node.config.filler then
-            insert_idx = i + 1
-            break
-        end
-    end
-
-    if insert_idx then
-        table.insert(inner_nodes, insert_idx, flavor_box)
-    end
+    -- Append at the end of inner_nodes (after rarity badge)
+    inner_nodes[#inner_nodes + 1] = faction_badge
 
     return ret
 end
