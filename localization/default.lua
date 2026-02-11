@@ -19,7 +19,7 @@ return {
             j_ante_aether_tesla_bulb = {
                 name = "Tesla Bulb",
                 text = {
-                    "{C:attention}Retriggers{} all",
+                    "{C:attention}Scores{} all",
                     "{C:enhanced}Steel{} and {C:enhanced}Gold{} cards",
                     "{C:attention}held in hand{}",
                     "{C:attention}#1#{} additional #2#"
@@ -32,9 +32,10 @@ return {
             j_ante_aether_alternator = {
                 name = "Alternator",
                 text = {
-                    "{C:attention}Retriggers{} the",
+                    "{C:attention}Scores{} the",
                     "{C:attention}second{} and {C:attention}fourth{} cards",
-                    "in scored hand"
+                    "in scored hand",
+                    "{C:attention}#1#{} additional #2#"
                 },
                 flavor_text = {
                     '{C:inactive,S:0.8}"Up.. down.. up... down...'
@@ -49,6 +50,43 @@ return {
                 flavor_text = {
                     '{C:inactive,S:0.8}"Zero resistance, yet somehow infinite potential.',
                     '{C:inactive,S:0.8}How curious. - Perkeo, Avatar of Resonance'
+                }
+            },
+            j_ante_aether_jumper_cable = {
+                name = "Jumper Cable",
+                text = {
+                    "Score the",
+                    "{C:attention}first{} card of scored hand",
+                    "{C:attention}#1#{} additional #2#"
+                },
+                flavor_text = {
+                    '{C:inactive,S:0.8}"Clear!"'
+                }
+
+            },
+            j_ante_aether_leyline_map = {
+                name = 'Leyline Map',
+                text = {
+                    "{C:attention}Surge:{} Surged card",
+                    "gain {C:chips}+#1#{} Chips"
+
+                },
+                flavor_text = {
+                    '{C:inactive,S:0.8}"Most artificers skip over the good leylines.',
+                    '{C:inactive,S:0.8}We, however, are not most artificers."'
+                }
+            },
+            j_ante_aether_repeater = {
+                name = "Repeater",
+                text = {
+                    "Scored {C:attention}High Cards{}",
+                    "are scored {C:attention}#1#{} additional #2#",
+                    "and {C:red}discards{} all cards",
+                    "{C:attention}held in hand{}",
+                    "after scoring"
+                },
+                flavor_text = {
+                    '{C:inactive,S:0.8}"Signal boosted. Bandwidth consumed.'
                 }
             }
         },
