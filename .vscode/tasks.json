@@ -9,7 +9,7 @@
                 "command": "${env:HOME}/Library/Application Support/Steam/steamapps/common/Balatro/run_lovely_macos.sh"
             },
             "group": {
-                "kind": "test", 
+                "kind": "test",
                 "isDefault": true
             },
             "presentation": {
