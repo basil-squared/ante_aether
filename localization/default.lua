@@ -86,7 +86,7 @@ return {
                     "after scoring"
                 },
                 flavor_text = {
-                    '{C:inactive,S:0.8}"Signal boosted. Bandwidth consumed.'
+                    '{C:inactive,S:0.8}"Signal boosted. Bandwidth consumed."'
                 }
             }
         },
