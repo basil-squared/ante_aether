@@ -103,8 +103,9 @@ return {
             j_ante_aether_switchboard = { -- Rare
                 name = "Switchboard",
                 text = {
-                    "All played cards are considered",
-                    "{C:attention}Adjacent{} to one another"
+                    "Swaps {C:chips} Chips{} and {C:mult}Mult{} values of",
+                    "{C:attention}played cards{}"
+
                 },
                 flavor_text = {
                     '{C:inactive,S:0.8}"Connecting.. hold, please.."'
@@ -157,6 +158,7 @@ return {
         collabs = {},
         dictionary = {
             ante_aether_transmit = "Transmit!",
+            k_swapped_ex = "Swapped!",
         },
         high_scores = {},
         labels = {},
