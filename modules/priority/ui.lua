@@ -22,8 +22,7 @@ local FACTION_COLORS = {
         bg   = hex("#141414"),
         text = hex("#D92626"),
     },
-    nullity = {
-
+    flux = {
         bg         = hex("#1F1F2E"),
         text_cycle = {
             hex("#9933E6"),
@@ -33,12 +32,17 @@ local FACTION_COLORS = {
             hex("#E6CC33"),
         },
     },
+    nullity = {
+        bg   = hex("#141414"),
+        text = hex("#808080"),
+    },
 }
 
 local FACTION_LABELS = {
     resonance = "Resonance",
     dominion = "Dominion",
     entropy = "Entropy",
+    flux = "Flux",
     nullity = "Nullity",
 }
 

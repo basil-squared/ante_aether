@@ -110,14 +110,26 @@ return {
                     '{C:inactive,S:0.8}"Connecting.. hold, please.."'
                 }
             },
-            j_ante_aether_carrier_wave = { -- Common
-                name = "Carrier Wave",
+            j_ante_aether_sympathy = { -- Uncommon
+                name = "Sympathy",
                 text = {
                     "If the first played card is a {C:attention}Face Card{},",
                     "Transmits {C:attention}Suit{} to other played cards."
                 },
                 flavor_text = {
-                    '{C:inactive,S:0.8}"Broadcasting on all frequencies."'
+                    '{C:inactive,S:0.8}"As above, so below. As one, so all."'
+                }
+            },
+            j_ante_aether_grave_robber = {
+                name = "Grave Robber",
+                text = {
+                    "If a card were to be {C:attention}destroyed,",
+                    "{C:green}#1# in #2#{} to instead",
+                    "add it to {C:attention}hand{}"
+                },
+                flavor_text = {
+                    '{C:inactive,S:0.8}"It\'s lucrative alright.',
+                    '{C:inactive,S:0.8}As long as you dont have dignity.'
                 }
             }
         },
@@ -143,7 +155,9 @@ return {
         blind_states = {},
         challenge_names = {},
         collabs = {},
-        dictionary = {},
+        dictionary = {
+            ante_aether_transmit = "Transmit!",
+        },
         high_scores = {},
         labels = {},
         poker_hand_descriptions = {},
