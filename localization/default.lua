@@ -52,7 +52,7 @@ return {
                     '{C:inactive,S:0.8}How curious. - Perkeo, Avatar of Resonance'
                 }
             },
-            j_ante_aether_jumper_cable = {
+            j_ante_aether_jumper_cable = { -- Common
                 name = "Jumper Cable",
                 text = {
                     "Score the",
@@ -64,7 +64,7 @@ return {
                 }
 
             },
-            j_ante_aether_leyline_map = {
+            j_ante_aether_leyline_map = { -- Uncommon
                 name = 'Leyline Map',
                 text = {
                     "{C:attention}Surge:{} Surged card",
@@ -76,7 +76,7 @@ return {
                     '{C:inactive,S:0.8}We, however, are not most artificers."'
                 }
             },
-            j_ante_aether_repeater = {
+            j_ante_aether_repeater = { -- Rare
                 name = "Repeater",
                 text = {
                     "Scored {C:attention}High Cards{}",
@@ -86,7 +86,38 @@ return {
                     "after scoring"
                 },
                 flavor_text = {
-                    '{C:inactive,S:0.8}"Signal boosted. Bandwidth consumed."'
+                    '{C:inactive,S:0.8}"Signal boosted. Bandwidth consumed.'
+                }
+            },
+            j_ante_aether_line_tapper = { -- Uncommon
+                name = "Line Tapper",
+                text = {
+                    "Whenever a ",
+                    "{C:planet}Blue{} or {C:tarot}Purple{} Seal trigger,",
+                    "gain {C:attention}$#1#{}"
+                },
+                flavor_text = {
+                    '{C:inactive,S:0.8}"They surely won\'t miss this..."'
+                }
+            },
+            j_ante_aether_switchboard = { -- Rare
+                name = "Switchboard",
+                text = {
+                    "All played cards are considered",
+                    "{C:attention}Adjacent{} to one another"
+                },
+                flavor_text = {
+                    '{C:inactive,S:0.8}"Connecting.. hold, please.."'
+                }
+            },
+            j_ante_aether_carrier_wave = { -- Common
+                name = "Carrier Wave",
+                text = {
+                    "If the first played card is a {C:attention}Face Card{},",
+                    "Transmits {C:attention}Suit{} to other played cards."
+                },
+                flavor_text = {
+                    '{C:inactive,S:0.8}"Broadcasting on all frequencies."'
                 }
             }
         },

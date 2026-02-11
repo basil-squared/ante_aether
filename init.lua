@@ -12,10 +12,13 @@ SMODS.current_mod.config = {
 }
 
 
+local mod_config = SMODS.current_mod.config
+
 SMODS.current_mod.config_tab = function()
     return {
         n = G.UIT.ROOT,
-        config = {
+        config = { align = "cm", padding = 0.05, colour = G.C.CLEAR },
+        nodes = {
             {
                 n = G.UIT.C,
                 config = { align = "cm", padding = 0.05, r = 0.1, colour = G.C.BLACK, emboss = 0.05 },
@@ -26,7 +29,7 @@ SMODS.current_mod.config_tab = function()
                         nodes = {
                             create_toggle({
                                 label = "Flavor Text",
-                                ref_table = SMODS.current_mod.config,
+                                ref_table = mod_config,
                                 ref_value = "flavor_text"
                             })
                         }
