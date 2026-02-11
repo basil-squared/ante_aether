@@ -4,7 +4,7 @@ SMODS.Joker {
     faction = 'resonance',
     atlas = AA.G.JokerAtlas.key,
     pos = { x = 2, y = 0 },
-    config = { extra = { chipincrem = 5 } },
+    config = { extra = { chipincrem = 10 } },
     loc_vars = function(self, info_queue, card)
         info_queue[#info_queue + 1] = { set = "Other", key = "ante_aether_surge_info" }
         return { vars = { card.ability.extra.chipincrem } }
